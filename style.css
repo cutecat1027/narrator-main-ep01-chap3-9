@@ -1,0 +1,83 @@
+* { box-sizing: border-box; }
+:root {
+  --card-width: 350px;
+  --font-size: 18px;
+  --line-height: 1.5;
+  --letter-spacing: 1px;
+  --narration-color: #b90000;
+  --narration1-color: #ffffff;
+  --monologue-color: #ff1010;
+}
+html, body { margin: 0; padding: 0; background: transparent; }
+.scene {
+  width: 100%; max-width: var(--card-width); margin: 0 auto;
+  border: 1px solid #888; border-radius: 5px; overflow: hidden;
+  background: #000 url('assets/background.jpg') center top / 100% auto no-repeat;
+  font: bold var(--font-size)/var(--line-height) cormorant garamond, serif;
+  letter-spacing: var(--letter-spacing); text-align: center;
+  overflow-wrap: break-word;
+}
+.scene p { margin: 0; }
+.narration { padding: 40px 20px 20px; color: var(--narration-color); text-shadow: 0 0 2px #00000055; }
+.narration1 { padding: 40px 20px 20px; color: var(--narration1-color); text-shadow: 0 0 2px #00000055; }
+.monologue { padding: 6px 20px 42px; color: var(--monologue-color); border-top: 1px solid #ffffff12; background: #0009; }
+@media (max-width: 350px) { .scene { font-size: clamp(14px, 5.15vw, var(--font-size)); } .narration { padding-inline: 12px; } .monologue { padding-inline: 12px; } }
+@media (prefers-reduced-motion: no-preference) { .animate .narration, .animate .monologue { animation: appear .8s ease both; } .animate .monologue { animation-delay: .6s; } }
+@keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+
+
+/* =========================
+   GLITCH TEXT EFFECT
+   ========================= */
+
+@media (prefers-reduced-motion: no-preference) {
+
+    .narration p,
+    .narration1 p,
+    .monologue p {
+        animation: textGlitch 3s infinite;
+    }
+
+    /* Tạo độ lệch thời gian giữa các phần */
+    .narration1 p {
+        animation-delay: 0s;
+    }
+
+    .monologue p {
+        animation-delay: 0.5s;
+    }
+}
+
+@keyframes textGlitch {
+
+    0%, 89%, 94%, 100% {
+        transform: translate(0);
+        text-shadow: 0 0 2px #00000055;
+    }
+
+    90% {
+        transform: translate(-2px, 0);
+        text-shadow:
+            3px 0 #00eaff,
+            -3px 0 #ff003c;
+    }
+
+    91% {
+        transform: translate(2px, 0);
+        text-shadow:
+            -3px 0 #00eaff,
+            3px 0 #ff003c;
+    }
+
+    92% {
+        transform: skewX(-4deg);
+        text-shadow:
+            2px 0 #00eaff,
+            -2px 0 #ff003c;
+    }
+
+    93% {
+        transform: translate(0);
+        text-shadow: none;
+    }
+}
